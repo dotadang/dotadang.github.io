@@ -12,14 +12,25 @@
 			border-radius: 5px;
 			cursor: pointer;
 		}
+
+		input[type="text"] {
+			font-size: 16px;
+			padding: 10px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			width: 100%;
+			box-sizing: border-box;
+		}
 	</style>
 	<script>
 		function openLink() {
-			window.open("http://www.example.com", "_system");
+			var url = document.getElementById("url").value;
+			window.open(url, "_system");
 		}
 	</script>
 </head>
 <body>
+	<input type="text" id="url" placeholder="Enter URL here">
 	<button onclick="openLink()">Open Link in Native Browser</button>
 </body>
 </html>
