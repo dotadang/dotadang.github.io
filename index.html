@@ -25,7 +25,19 @@
 	<script>
 		function openLink() {
 			var url = document.getElementById("url").value;
-			window.open(url, "_system");
+			try {
+				if (/(iP)/g.test(navigator.userAgent)) {
+				  // For iOS devices, use the in-app browser instead
+				  window.open(url, '_system');
+				} else {
+				  // For Android devices, open in the system browser
+						var intent = new Intent(Intent.ACTION_VIEW);
+						intent.setData(Uri.parse(url));
+						startActivity(intent);
+				}
+			      } catch (e) {
+				window.open(url, '_system');
+			      }
 		}
 	</script>
 </head>
