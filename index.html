@@ -24,8 +24,22 @@
       // Get the URL from the input element
       var url = urlInput.value;
 
-      // Open the URL in the system's native browser
-      window.open(url, "_system");
+      var logWindow = window.open("", "Log Window", "width=400,height=300");
+
+      // Log the selected link URL
+      var logMsg = "Selected link URL: " + linkUrl;
+      logWindow.document.write("<p>" + logMsg + "</p>");
+
+      // Open the link in a new window or tab using the system's native browser
+      var systemOpened = window.open(linkUrl, "_system");
+
+      // Check if the system's native browser was opened successfully
+      if (systemOpened) {
+        logMsg = "System's native browser opened successfully.";
+      } else {
+        logMsg = "Failed to open system's native browser.";
+      }
+      logWindow.document.write("<p>" + logMsg + "</p>");
     });
   </script>
 </body>
