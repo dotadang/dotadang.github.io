@@ -2,11 +2,42 @@
 <html>
 <head>
   <title>Open Link in Native Browser</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      font-size: 24px;
+      margin: 20px 10px;
+    }
+    p {
+      margin: 10px;
+    }
+    a {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px;
+      background-color: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    #log {
+      padding: 10px;
+      margin: 10px;
+      background-color: #f8f9fa;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
   <h1>Open Link in Native Browser</h1>
   <p>Click the link below to open it in the system's native browser:</p>
-  <a href="https://www.baidu.com" target="_blank" id="myLink">Example Link</a>
+  <a href="https://www.example.com" target="_blank" id="myLink">Example Link</a>
   <div id="log"></div>
   
   <script>
