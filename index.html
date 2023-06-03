@@ -5,58 +5,39 @@
 </head>
 <body>
   <h1>Open Link in Native Browser</h1>
-  <p>Enter a URL in the input box below and click the button to open it in the system's native browser:</p>
-  <form>
-    <input type="text" id="urlInput" placeholder="Enter URL here" style="width: 80%;">
-    <button type="button" id="openLinkBtn" style="width: 18%;">Open Link</button>
-  </form>
+  <p>Click the link below to open it in the system's native browser:</p>
+  <a href="https://www.baidu.com" target="_blank" id="myLink">Example Link</a>
+  <div id="log"></div>
   
   <script>
-    // Get a reference to the input element and button element
-    var urlInput = document.getElementById("urlInput");
-    var openLinkBtn = document.getElementById("openLinkBtn");
+    // Get a reference to the link element
+    var linkElement = document.getElementById("myLink");
 
-    // Add a click event listener to the button element
-    openLinkBtn.addEventListener("click", function(event) {
-      // Prevent the default behavior of the button element
+    // Get a reference to the log element
+    var logElement = document.getElementById("log");
+
+    // Add a click event listener to the link element
+    linkElement.addEventListener("click", function(event) {
+      // Prevent the default behavior of the link element
       event.preventDefault();
 
-      // Get the URL from the input element
-      var url = urlInput.value;
+      // Get the URL of the link element
+      var linkUrl = linkElement.href;
 
-      // Create a tooltip element to display the logs
-      var tooltip = document.createElement("div");
-      tooltip.style.display = "inline-block";
-      tooltip.style.position = "absolute";
-      tooltip.style.zIndex = "999";
-      tooltip.style.padding = "10px";
-      tooltip.style.backgroundColor = "#333";
-      tooltip.style.color = "#fff";
-      tooltip.style.borderRadius = "5px";
-      tooltip.style.opacity = "0";
-      tooltip.innerHTML = "Selected link URL: " + linkUrl;
-      document.body.appendChild(tooltip);
+      // Log the selected link URL
+      console.log("Selected link URL: " + linkUrl);
 
-      // Move the tooltip to the mouse position
-      document.addEventListener("mousemove", function(event) {
-        tooltip.style.left = (event.pageX + 10) + "px";
-        tooltip.style.top = (event.pageY + 10) + "px";
-      });
-
-      // Fade in the tooltip
-      tooltip.style.transition = "opacity 0.3s ease-in-out";
-      tooltip.style.opacity = "1";
       // Open the link in a new window or tab using the system's native browser
       var systemOpened = window.open(linkUrl, "_system");
 
       // Log whether the system's native browser was opened successfully
-      var logMsg;
       if (systemOpened) {
-        logMsg = "System's native browser opened successfully.";
+        console.log("System's native browser opened successfully.");
+        logElement.innerText = "System's native browser opened successfully.";
       } else {
-        logMsg = "Failed to open system's native browser.";
+        console.log("Failed to open system's native browser.");
+        logElement.innerText = "Failed to open system's native browser.";
       }
-      tooltip.innerHTML += "<br>" + logMsg;
     });
   </script>
 </body>
