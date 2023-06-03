@@ -24,22 +24,39 @@
       // Get the URL from the input element
       var url = urlInput.value;
 
-      var logWindow = window.open("", "Log Window", "width=400,height=300");
+      // Create a tooltip element to display the logs
+      var tooltip = document.createElement("div");
+      tooltip.style.display = "inline-block";
+      tooltip.style.position = "absolute";
+      tooltip.style.zIndex = "999";
+      tooltip.style.padding = "10px";
+      tooltip.style.backgroundColor = "#333";
+      tooltip.style.color = "#fff";
+      tooltip.style.borderRadius = "5px";
+      tooltip.style.opacity = "0";
+      tooltip.innerHTML = "Selected link URL: " + linkUrl;
+      document.body.appendChild(tooltip);
 
-      // Log the selected link URL
-      var logMsg = "Selected link URL: " + linkUrl;
-      logWindow.document.write("<p>" + logMsg + "</p>");
+      // Move the tooltip to the mouse position
+      document.addEventListener("mousemove", function(event) {
+        tooltip.style.left = (event.pageX + 10) + "px";
+        tooltip.style.top = (event.pageY + 10) + "px";
+      });
 
+      // Fade in the tooltip
+      tooltip.style.transition = "opacity 0.3s ease-in-out";
+      tooltip.style.opacity = "1";
       // Open the link in a new window or tab using the system's native browser
       var systemOpened = window.open(linkUrl, "_system");
 
-      // Check if the system's native browser was opened successfully
+      // Log whether the system's native browser was opened successfully
+      var logMsg;
       if (systemOpened) {
         logMsg = "System's native browser opened successfully.";
       } else {
         logMsg = "Failed to open system's native browser.";
       }
-      logWindow.document.write("<p>" + logMsg + "</p>");
+      tooltip.innerHTML += "<br>" + logMsg;
     });
   </script>
 </body>
