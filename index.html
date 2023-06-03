@@ -1,48 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Open Link in Native Browser</title>
-	<style>
-		button {
-			font-size: 20px;
-			padding: 10px 20px;
-			background-color: #4CAF50;
-			color: white;
-			border: none;
-			border-radius: 5px;
-			cursor: pointer;
-		}
-
-		input[type="text"] {
-			font-size: 16px;
-			padding: 10px;
-			border-radius: 5px;
-			border: 1px solid #ccc;
-			width: 100%;
-			box-sizing: border-box;
-		}
-	</style>
-	<script>
-		function openLink() {
-			var url = document.getElementById("url").value;
-			try {
-				if (/(iP)/g.test(navigator.userAgent)) {
-				  // For iOS devices, use the in-app browser instead
-				  window.open(url, '_system');
-				} else {
-				  // For Android devices, open in the system browser
-						var intent = new Intent(Intent.ACTION_VIEW);
-						intent.setData(Uri.parse(url));
-						startActivity(intent);
-				}
-			      } catch (e) {
-				window.open(url, '_system');
-			      }
-		}
-	</script>
+  <title>Open Link in Native Browser</title>
 </head>
 <body>
-	<input type="text" id="url" placeholder="Enter URL here" value="http://www.baidu.com">
-	<button onclick="openLink()">Open Link in Native Browser</button>
+  <h1>Open Link in Native Browser</h1>
+  <p>Enter a URL in the input box below and click the button to open it in the system's native browser:</p>
+  <form>
+    <input type="text" id="urlInput" placeholder="Enter URL here" style="width: 80%;">
+    <button type="button" id="openLinkBtn" style="width: 18%;">Open Link</button>
+  </form>
+  
+  <script>
+    // Get a reference to the input element and button element
+    var urlInput = document.getElementById("urlInput");
+    var openLinkBtn = document.getElementById("openLinkBtn");
+
+    // Add a click event listener to the button element
+    openLinkBtn.addEventListener("click", function(event) {
+      // Prevent the default behavior of the button element
+      event.preventDefault();
+
+      // Get the URL from the input element
+      var url = urlInput.value;
+
+      // Open the URL in the system's native browser
+      window.open(url, "_system");
+    });
+  </script>
 </body>
 </html>
